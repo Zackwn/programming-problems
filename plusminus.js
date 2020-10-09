@@ -5,7 +5,18 @@ const solve = (arr) => {
   let Negative = 0
   let Zero = 0
   arr.forEach((element) => {
-    element > 0 ? Positive++ : element === 0 ? Zero++ : Negative++
+    // element > 0 ? Positive++ : element === 0 ? Zero++ : Negative++
+
+    // positive
+    if (element > 0) {
+      Positive++
+      // zero
+    } else if (element === 0) {
+      Zero++
+      // negative
+    } else {
+      Negative++
+    }
   })
   const result = [  
     Positive / arr.length,
