@@ -1,15 +1,15 @@
 "use strict";
-var query = ['abc', 'lock', 'qaui'];
-var dictionary = ['cba', 'abc', 'ckol', 'kolc', 'kcol', 'lolck', 'qauil'];
-var sort = function (target) {
+const query = ['abc', 'lock', 'qaui'];
+const dictionary = ['cba', 'abc', 'ckol', 'kolc', 'kcol', 'lolck', 'qauil'];
+const sort = (target) => {
     // return target.split('').sort().join('')
-    var targetArr = target.split('').map(function (letter) { return letter.toUpperCase(); });
-    var alphabet = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
-    var result = '';
-    for (var ALPindex = 0; ALPindex < alphabet.length; ALPindex++) {
-        var letter = alphabet[ALPindex];
-        var indexesInTarget = [];
-        for (var i = 0; i < targetArr.length; i++) {
+    const targetArr = target.split('').map(letter => letter.toUpperCase());
+    const alphabet = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
+    let result = '';
+    for (let ALPindex = 0; ALPindex < alphabet.length; ALPindex++) {
+        const letter = alphabet[ALPindex];
+        const indexesInTarget = [];
+        for (let i = 0; i < targetArr.length; i++) {
             if (targetArr[i] === letter) {
                 indexesInTarget.push(i);
             }
@@ -17,26 +17,26 @@ var sort = function (target) {
         if (indexesInTarget.length === 0) {
             continue;
         }
-        indexesInTarget.forEach(function (index) {
+        indexesInTarget.forEach(index => {
             result += target[index];
         });
     }
     return result;
 };
-var solve = function (query, dictionary) {
-    var result = {};
-    query.forEach(function (queryElement) {
-        var queryElementSorted = sort(queryElement);
+const solve = (query, dictionary) => {
+    let result = {};
+    query.forEach(queryElement => {
+        const queryElementSorted = sort(queryElement);
         result[queryElement] = 0;
-        dictionary.forEach(function (dictionaryElement) {
-            var dictonaryElementSorted = sort(dictionaryElement);
+        dictionary.forEach(dictionaryElement => {
+            const dictonaryElementSorted = sort(dictionaryElement);
             if (queryElementSorted === dictonaryElementSorted) {
                 result[queryElement] += 1;
             }
         });
     });
-    var response = [];
-    for (var key in result) {
+    const response = [];
+    for (let key in result) {
         response.push(result[key]);
     }
     return response;
