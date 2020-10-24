@@ -61,6 +61,19 @@ class List<T> {
       current = current.next
     }
   }
+
+  map(callbackFN: (value: T) => T | T[] | any) {
+    let current = this.head
+    const result = []
+    while(current) {
+      let returnData = callbackFN(current.data)
+      if (returnData !== undefined) {
+        result.push(returnData)
+      }
+      current = current.next
+    }
+    return result
+  }
 }
 
 const myList = new List<string>()
@@ -71,8 +84,13 @@ myList.add('test3')
 
 myList.forEach((v) => console.log(v))
 
-// myList.pop()
+const newArray = myList.map((v) => {
+  return `${v} newArray`
+})
+console.log(newArray)
 
-// console.log(myList.first) // test1
-// console.log(myList.last) // test2
-// console.log(myList.length) // 2
+myList.pop()
+
+console.log(myList.first) // test1
+console.log(myList.last) // test2
+console.log(myList.length) // 2

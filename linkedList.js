@@ -58,6 +58,18 @@ var List = /** @class */ (function () {
             current = current.next;
         }
     };
+    List.prototype.map = function (callbackFN) {
+        var current = this.head;
+        var result = [];
+        while (current) {
+            var returnData = callbackFN(current.data);
+            if (returnData !== undefined) {
+                result.push(returnData);
+            }
+            current = current.next;
+        }
+        return result;
+    };
     return List;
 }());
 var myList = new List();
@@ -65,7 +77,11 @@ myList.add('test1');
 myList.add('test2');
 myList.add('test3');
 myList.forEach(function (v) { return console.log(v); });
-// myList.pop()
-// console.log(myList.first) // test1
-// console.log(myList.last) // test2
-// console.log(myList.length) // 2
+var newArray = myList.map(function (v) {
+    return v + " newArray";
+});
+console.log(newArray);
+myList.pop();
+console.log(myList.first); // test1
+console.log(myList.last); // test2
+console.log(myList.length); // 2
