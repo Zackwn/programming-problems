@@ -51,13 +51,21 @@ var List = /** @class */ (function () {
         this.length--;
         return data;
     };
+    List.prototype.forEach = function (callbackFN) {
+        var current = this.head;
+        while (current) {
+            callbackFN(current.data);
+            current = current.next;
+        }
+    };
     return List;
 }());
 var myList = new List();
 myList.add('test1');
 myList.add('test2');
 myList.add('test3');
-myList.pop();
-console.log(myList.first); // test1
-console.log(myList.last); // test2
-console.log(myList.length); // 2
+myList.forEach(function (v) { return console.log(v); });
+// myList.pop()
+// console.log(myList.first) // test1
+// console.log(myList.last) // test2
+// console.log(myList.length) // 2

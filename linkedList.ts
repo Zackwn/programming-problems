@@ -53,6 +53,14 @@ class List<T> {
     this.length--
     return data
   }
+
+  forEach(callbackFN: (value: T) => any) {
+    let current = this.head
+    while(current) {
+      callbackFN(current.data)
+      current = current.next
+    }
+  }
 }
 
 const myList = new List<string>()
@@ -61,8 +69,10 @@ myList.add('test1')
 myList.add('test2')
 myList.add('test3')
 
-myList.pop()
+myList.forEach((v) => console.log(v))
 
-console.log(myList.first) // test1
-console.log(myList.last) // test2
-console.log(myList.length) // 2
+// myList.pop()
+
+// console.log(myList.first) // test1
+// console.log(myList.last) // test2
+// console.log(myList.length) // 2
