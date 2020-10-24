@@ -74,23 +74,38 @@ class List<T> {
     }
     return result
   }
+
+  reduce(callbackFN: (accumulator: T, currentValue: T) => T) {
+    let current = this.head
+    let accumulator: T | T[] = current.data
+    current = current.next
+    while(current) {
+      accumulator = callbackFN(accumulator, current.data)
+      current = current.next
+    }
+    return accumulator
+  }
 }
 
-const myList = new List<string>()
-
-myList.add('test1')
-myList.add('test2')
-myList.add('test3')
-
-myList.forEach((v) => console.log(v))
-
-const newArray = myList.map((v) => {
+let stringLogs: boolean = false 
+const myStringList = new List<string>()
+myStringList.add('test1')
+myStringList.add('test2')
+myStringList.add('test3')
+myStringList.forEach((v) => stringLogs && console.log(v))
+const newArray = myStringList.map((v) => {
   return `${v} newArray`
 })
-console.log(newArray)
+myStringList.pop()
+stringLogs && console.log(newArray)
+stringLogs && console.log(myStringList.first)
+stringLogs && console.log(myStringList.last)
+stringLogs && console.log(myStringList.length)
 
-myList.pop()
-
-console.log(myList.first) // test1
-console.log(myList.last) // test2
-console.log(myList.length) // 2
+let numberLogs: boolean = true
+const myNumberList = new List<number>()
+myNumberList.add(1)
+myNumberList.add(2)
+myNumberList.add(3)
+const sum = myNumberList.reduce((acc, v) => acc + v)
+numberLogs && console.log(sum)

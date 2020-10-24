@@ -70,18 +70,36 @@ var List = /** @class */ (function () {
         }
         return result;
     };
+    List.prototype.reduce = function (callbackFN) {
+        var current = this.head;
+        var accumulator = current.data;
+        current = current.next;
+        while (current) {
+            accumulator = callbackFN(accumulator, current.data);
+            current = current.next;
+        }
+        return accumulator;
+    };
     return List;
 }());
-var myList = new List();
-myList.add('test1');
-myList.add('test2');
-myList.add('test3');
-myList.forEach(function (v) { return console.log(v); });
-var newArray = myList.map(function (v) {
+var stringLogs = false;
+var myStringList = new List();
+myStringList.add('test1');
+myStringList.add('test2');
+myStringList.add('test3');
+myStringList.forEach(function (v) { return stringLogs && console.log(v); });
+var newArray = myStringList.map(function (v) {
     return v + " newArray";
 });
-console.log(newArray);
-myList.pop();
-console.log(myList.first); // test1
-console.log(myList.last); // test2
-console.log(myList.length); // 2
+myStringList.pop();
+stringLogs && console.log(newArray);
+stringLogs && console.log(myStringList.first);
+stringLogs && console.log(myStringList.last);
+stringLogs && console.log(myStringList.length);
+var numberLogs = true;
+var myNumberList = new List();
+myNumberList.add(1);
+myNumberList.add(2);
+myNumberList.add(3);
+var sum = myNumberList.reduce(function (acc, v) { return acc + v; });
+numberLogs && console.log(sum);
