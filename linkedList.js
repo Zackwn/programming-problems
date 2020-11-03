@@ -51,6 +51,23 @@ var List = /** @class */ (function () {
         this.length--;
         return data;
     };
+    List.prototype.removeDuplicates = function () {
+        var dataHistory = [];
+        var currentNode = this.head;
+        var previusNode = currentNode;
+        while (currentNode) {
+            if (dataHistory.includes(currentNode.data)) {
+                // there is a duplicated value, so remove currentNode
+                previusNode.next = currentNode.next;
+                currentNode = previusNode.next;
+                continue;
+            }
+            dataHistory.push(currentNode.data);
+            previusNode = currentNode;
+            currentNode = currentNode.next;
+        }
+        console.log(this.head);
+    };
     List.prototype.forEach = function (callbackFN) {
         var current = this.head;
         while (current) {
@@ -96,10 +113,13 @@ stringLogs && console.log(newArray);
 stringLogs && console.log(myStringList.first);
 stringLogs && console.log(myStringList.last);
 stringLogs && console.log(myStringList.length);
-var numberLogs = true;
+var numberLogs = false;
 var myNumberList = new List();
 myNumberList.add(1);
 myNumberList.add(2);
+myNumberList.add(2);
 myNumberList.add(3);
-var sum = myNumberList.reduce(function (acc, v) { return acc + v; });
-numberLogs && console.log(sum);
+console.log(myNumberList.head);
+myNumberList.removeDuplicates();
+// const sum = myNumberList.reduce((acc, v) => acc + v)
+// numberLogs && console.log(sum)

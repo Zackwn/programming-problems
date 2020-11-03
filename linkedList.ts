@@ -7,17 +7,17 @@ class node<T> {
 }
 
 class List<T> {
-  private head: node<T>
+  public head: node<T>
   length: number
 
   constructor() {
     this.length = 0
   }
 
-  private getCurrentAndPreviusNodes(): {current: node<T>, previus: node<T>} {
+  private getCurrentAndPreviusNodes(): { current: node<T>, previus: node<T> } {
     let currentNode = this.head
     let previusNode = null
-    while(currentNode.next) {
+    while (currentNode.next) {
       previusNode = currentNode
       currentNode = currentNode.next
     }
@@ -54,9 +54,28 @@ class List<T> {
     return data
   }
 
+  removeDuplicates() {
+    let dataHistory = []
+    let currentNode = this.head
+    let previusNode = currentNode
+    while (currentNode) {
+      if (dataHistory.includes(currentNode.data)) {
+        // there is a duplicated value, so remove currentNode
+        previusNode.next = currentNode.next
+        currentNode = previusNode.next
+        continue
+      }
+
+      dataHistory.push(currentNode.data)
+      previusNode = currentNode
+      currentNode = currentNode.next
+    }
+    console.log(this.head)
+  }
+
   forEach(callbackFN: (value: T) => any) {
     let current = this.head
-    while(current) {
+    while (current) {
       callbackFN(current.data)
       current = current.next
     }
@@ -65,7 +84,7 @@ class List<T> {
   map(callbackFN: (value: T) => T | T[] | any) {
     let current = this.head
     const result = []
-    while(current) {
+    while (current) {
       let returnData = callbackFN(current.data)
       if (returnData !== undefined) {
         result.push(returnData)
@@ -79,7 +98,7 @@ class List<T> {
     let current = this.head
     let accumulator: T | T[] = current.data
     current = current.next
-    while(current) {
+    while (current) {
       accumulator = callbackFN(accumulator, current.data)
       current = current.next
     }
@@ -87,7 +106,7 @@ class List<T> {
   }
 }
 
-let stringLogs: boolean = false 
+let stringLogs: boolean = false
 const myStringList = new List<string>()
 myStringList.add('test1')
 myStringList.add('test2')
@@ -102,10 +121,13 @@ stringLogs && console.log(myStringList.first)
 stringLogs && console.log(myStringList.last)
 stringLogs && console.log(myStringList.length)
 
-let numberLogs: boolean = true
+let numberLogs: boolean = false
 const myNumberList = new List<number>()
 myNumberList.add(1)
 myNumberList.add(2)
+myNumberList.add(2)
 myNumberList.add(3)
-const sum = myNumberList.reduce((acc, v) => acc + v)
-numberLogs && console.log(sum)
+console.log(myNumberList.head)
+myNumberList.removeDuplicates()
+// const sum = myNumberList.reduce((acc, v) => acc + v)
+// numberLogs && console.log(sum)
