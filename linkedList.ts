@@ -27,6 +27,13 @@ class List<T> {
     }
   }
 
+  isEmpty() {
+    if (!this.head?.data) {
+      return true
+    }
+    return false
+  }
+
   add(value: T) {
     if (!this.head) {
       this.head = new node(value)
@@ -123,11 +130,13 @@ stringLogs && console.log(myStringList.length)
 
 let numberLogs: boolean = false
 const myNumberList = new List<number>()
+console.log(myNumberList.isEmpty())
 myNumberList.add(1)
 myNumberList.add(2)
 myNumberList.add(2)
 myNumberList.add(3)
 console.log(myNumberList.head)
 myNumberList.removeDuplicates()
+console.log(myNumberList.isEmpty())
 // const sum = myNumberList.reduce((acc, v) => acc + v)
 // numberLogs && console.log(sum)
