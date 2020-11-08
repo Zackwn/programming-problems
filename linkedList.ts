@@ -6,7 +6,7 @@ class node<T> {
   }
 }
 
-class List<T> {
+class List<T = any> {
   public head: node<T>
   length: number
 
@@ -59,6 +59,21 @@ class List<T> {
     delete previus.next
     this.length--
     return data
+  }
+
+  shift() {
+    if (!this.head) {
+      return null
+    }
+    let deletedElement: T
+    if (!this.head.next) {
+      deletedElement = this.head.data
+      this.head = null
+    } else {
+      deletedElement = this.head.data
+      this.head = this.head.next
+    }
+    return deletedElement
   }
 
   removeDuplicates() {
@@ -118,7 +133,7 @@ const myStringList = new List<string>()
 myStringList.add('test1')
 myStringList.add('test2')
 myStringList.add('test3')
-myStringList.forEach((v) => stringLogs && console.log(v))
+// myStringList.forEach((v) => stringLogs && console.log(v))
 const newArray = myStringList.map((v) => {
   return `${v} newArray`
 })
@@ -130,13 +145,32 @@ stringLogs && console.log(myStringList.length)
 
 let numberLogs: boolean = false
 const myNumberList = new List<number>()
-console.log(myNumberList.isEmpty())
+numberLogs && console.log(myNumberList.isEmpty())
 myNumberList.add(1)
 myNumberList.add(2)
 myNumberList.add(2)
 myNumberList.add(3)
-console.log(myNumberList.head)
+numberLogs && console.log(myNumberList.head)
 myNumberList.removeDuplicates()
-console.log(myNumberList.isEmpty())
-// const sum = myNumberList.reduce((acc, v) => acc + v)
-// numberLogs && console.log(sum)
+numberLogs && console.log(myNumberList.isEmpty())
+const sum = myNumberList.reduce((acc, v) => acc + v)
+numberLogs && console.log(sum)
+
+const testList = new List<number>()
+testList.add(1)
+testList.add(2)
+testList.add(3)
+// let removedElement = testList.shift()
+// console.log({ removedElement })
+// testList.forEach(el => console.log(el))
+
+// rotate left implementation
+function rotateLeft(linkedList: List, times: number = 1) {
+  for (let time = 0; time < times; time++) {
+    linkedList.add(linkedList.shift())
+  }
+}
+
+rotateLeft(testList)
+testList.forEach(el => console.log(el))
+
