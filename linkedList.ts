@@ -126,6 +126,16 @@ class List<T = any> {
     }
     return accumulator
   }
+
+  toArray() {
+    let arrayList: T[] = []
+    let currentNode = this.head
+    while (currentNode) {
+      arrayList.push(currentNode.data)
+      currentNode = currentNode.next
+    }
+    return arrayList
+  }
 }
 
 let stringLogs: boolean = false
@@ -172,5 +182,7 @@ function rotateLeft(linkedList: List, times: number = 1) {
 }
 
 rotateLeft(testList)
-testList.forEach(el => console.log(el))
+// testList.forEach(el => console.log(el))
+let testListArr = testList.toArray()
+console.log(testListArr)
 
