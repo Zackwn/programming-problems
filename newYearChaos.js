@@ -1,8 +1,8 @@
 // [1, 2, 3, 4, 5]
 const chaotic = [2, 1, 5, 3, 4]
 
-const minimumBrides = (arr) => {
-  let totalBrides = 0
+const minumumBribes = (arr) => {
+  let totalBribes = 0
 
   let expectedFirst = 1
   let expectedSecond = 2
@@ -14,18 +14,18 @@ const minimumBrides = (arr) => {
       expectedSecond = expectedThird
       expectedThird += 1
     } else if (arr[index] === expectedSecond) {
-      totalBrides += 1
+      totalBribes += 1
       expectedSecond = expectedThird
       expectedThird += 1
     } else if (arr[index] === expectedThird) {
-      totalBrides += 2
+      totalBribes += 2
       expectedThird += 1
     } else {
       console.log('Too chaotic')
     }
   }
   
-  console.log(totalBrides)
+  console.log(totalBribes)
 }
 
-minimumBrides(chaotic)
+minumumBribes(chaotic)
