@@ -1,4 +1,4 @@
-function minimumSwaps(arr: number[]) {
+function minimumSwapsAscending(arr: number[]) {
   let minSwaps = 0
 
   for (let i = 0; i < arr.length; i++) {
@@ -25,6 +25,23 @@ function minimumSwaps(arr: number[]) {
   return minSwaps
 }
 
-minimumSwaps([4, 3, 1, 2])
+function minimumSwapsDesceding(arr: number[]) {
+  let minimumSwaps = 0
+  let greaterElement = Math.max(...arr)
+  for (let index = arr.length - 1; index > 0; index--) {
+    let right = Math.abs(greaterElement - index)
+    if (arr[index] !== right) {
+      let rightIndex = arr.indexOf(right)
+      let tempEl = arr[index]
+      arr[index] = right
+      arr[rightIndex] = tempEl
+      minimumSwaps++
+    }
+  }
+  return minimumSwaps
+}
+
+minimumSwapsAscending([4, 3, 1, 2]) // 3
+minimumSwapsDesceding([1, 2, 3, 4]) // 2
 
 export { }
