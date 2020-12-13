@@ -1,5 +1,12 @@
 "use strict";
 // import { inspect } from 'util'
+var __spreadArrays = (this && this.__spreadArrays) || function () {
+    for (var s = 0, i = 0, il = arguments.length; i < il; i++) s += arguments[i].length;
+    for (var r = Array(s), k = 0, i = 0; i < il; i++)
+        for (var a = arguments[i], j = 0, jl = a.length; j < jl; j++, k++)
+            r[k] = a[j];
+    return r;
+};
 exports.__esModule = true;
 var Node = /** @class */ (function () {
     function Node(data) {
@@ -25,7 +32,7 @@ var Node = /** @class */ (function () {
 
 
   As seen above, even one element not being directly the root (begin),
-  he can origin two more forks witch follow the same root's guide
+  it can origin two more forks witch follow the same guide
  */
 var BinarySearchTree = /** @class */ (function () {
     function BinarySearchTree() {
@@ -35,14 +42,25 @@ var BinarySearchTree = /** @class */ (function () {
         for (var _i = 0; _i < arguments.length; _i++) {
             data[_i] = arguments[_i];
         }
-        var root = null;
-        if (this.lastRoot) {
-            root = this.lastRoot;
-        }
+        var root = this.root;
         for (var index = 0; index < data.length; index++) {
             root = this.insert(root, data[index]);
         }
-        this.lastRoot = root;
+    };
+    BinarySearchTree.prototype[Symbol.iterator] = function () {
+        return this.toArray(this.root).values();
+    };
+    BinarySearchTree.prototype.toArray = function (root) {
+        if (root === void 0) { root = this.root; }
+        var elements = [];
+        elements.push(root.data);
+        if (root.right) {
+            elements.push.apply(elements, this.toArray(root.right));
+        }
+        if (root.left) {
+            elements.push.apply(elements, this.toArray(root.left));
+        }
+        return elements;
     };
     BinarySearchTree.prototype.insert = function (root, data) {
         if (!root) {
@@ -105,3 +123,6 @@ tree.add.apply(tree, data);
 tree.add.apply(tree, data2);
 // console.log(inspect(tree.root, { showHidden: false, depth: null }))
 console.log(tree.getHeight); // -> 3
+console.log(tree.root);
+console.log(__spreadArrays(tree));
+console.log(tree.toArray());

@@ -28,23 +28,34 @@ class Node<T> {
 
 
   As seen above, even one element not being directly the root (begin),
-  he can origin two more forks witch follow the same root's guide
+  it can origin two more forks witch follow the same guide
  */
 class BinarySearchTree<T = number> {
   root: Node<T>
-  private lastRoot: Node<T>
 
   constructor() { }
 
   add(...data: Array<T>): void {
-    let root = null
-    if (this.lastRoot) {
-      root = this.lastRoot
-    }
+    let root = this.root
     for (let index = 0; index < data.length; index++) {
       root = this.insert(root, data[index])
     }
-    this.lastRoot = root
+  }
+
+  [Symbol.iterator]() {
+    return this.toArray(this.root).values()
+  }
+
+  public toArray(root: Node<T> = this.root) {
+    const elements: T[] = []
+    elements.push(root.data)
+    if (root.right) {
+      elements.push(...this.toArray(root.right))
+    }
+    if (root.left) {
+      elements.push(...this.toArray(root.left))
+    }
+    return elements
   }
 
   private insert(root: Node<T>, data: T) {
@@ -111,5 +122,8 @@ tree.add(...data2)
 
 // console.log(inspect(tree.root, { showHidden: false, depth: null }))
 console.log(tree.getHeight) // -> 3
+console.log(tree.root)
+console.log([...tree])
+console.log(tree.toArray())
 
 export { }
