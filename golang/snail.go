@@ -1,4 +1,4 @@
-package kata
+package main
 
 func Snail(snaipMap [][]int) []int {
 	if len(snaipMap) == 0 {

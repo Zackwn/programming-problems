@@ -1,3 +1,5 @@
+package main
+
 func search(nums []int, target int) int {
 	indexStart := 0
 	indexEnd := len(nums) - 1

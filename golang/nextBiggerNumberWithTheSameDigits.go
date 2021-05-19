@@ -1,4 +1,4 @@
-package kata
+package main
 
 func NextBigger(n int) int {
 	if n/10 == 0 {

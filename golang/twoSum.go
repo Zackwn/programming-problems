@@ -1,3 +1,5 @@
+package main
+
 func twoSum(nums []int, target int) []int {
 	println(nums, target)
 	for index, value := range nums {

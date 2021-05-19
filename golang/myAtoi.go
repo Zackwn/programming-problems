@@ -1,3 +1,10 @@
+package main
+
+import (
+	"math"
+	"unicode"
+)
+
 func myAtoi(s string) int {
 	isUnsigned := false
 	signAlreadyDefined := false
