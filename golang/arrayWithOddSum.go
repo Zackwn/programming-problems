@@ -1,32 +1,41 @@
 package main
 
-import "fmt"
+// import "fmt"
 
-func TestArrayWithOddSum() {
-	a := []int{2, 3}
-	fmt.Println(ArrayWithOddSum(a)) // YES
-	a = []int{2, 2, 8, 8}
-	fmt.Println(ArrayWithOddSum(a)) // NO
-	a = []int{3, 3, 3}
-	fmt.Println(ArrayWithOddSum(a)) // YES
-	a = []int{5, 5, 5, 5}
-	fmt.Println(ArrayWithOddSum(a)) // NO
-	a = []int{1, 1, 1, 1}
-	fmt.Println(ArrayWithOddSum(a)) // NO
-}
+// func main() {
+// 	var a []int
+// 	n := 0
+// 	x := 0
+// 	fmt.Scan(&n)
+// 	for i := 0; i < n; i++ {
+// 		fmt.Scan(&x)
+// 		a = make([]int, x)
+// 		k := 0
+// 		for j := 0; j < x; j++ {
+// 			fmt.Scan(&k)
+// 			a[j] = k
+// 		}
+// 		fmt.Println(ArrayWithOddSum(a))
+// 	}
+// }
 
-// return "YES" or "NO"
 func ArrayWithOddSum(a []int) string {
 	oddNums := 0
+	evenNums := 0
 	for i := 0; i < len(a); i++ {
-		if a[i]%2 != 0 {
+		if a[i]%2 == 0 {
+			evenNums++
+		} else {
 			oddNums++
 		}
 	}
 
-	if oddNums%2 == 0 {
-		return "NO"
-	} else {
+	if oddNums != 0 {
+		if oddNums%2 == 0 && evenNums == 0 {
+			return "NO"
+		}
 		return "YES"
+	} else {
+		return "NO"
 	}
 }
