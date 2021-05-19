@@ -1,13 +1,12 @@
 package main
 
 func firstUniqChar(s string) int {
-	chars := make(map[byte]uint, 26)
-	for i := 0; i < len(s); i++ {
-		chars[s[i]]++
+	chars := [26]int{}
+	for _, char := range s {
+		chars[char-'a']++
 	}
-	for i := 0; i < len(s); i++ {
-		v := chars[s[i]]
-		if v == 1 {
+	for i, char := range s {
+		if chars[char-'a'] == 1 {
 			return i
 		}
 	}
