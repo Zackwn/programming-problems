@@ -1,3 +1,5 @@
+package main
+
 func Sort(slice []int32) {
 	ahead, back := 1, 0
 

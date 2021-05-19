@@ -1,11 +1,5 @@
 package main
 
-import "fmt"
-
-func main() {
-	fmt.Println(alphabeticPick("abdw", "abcgggg"))
-}
-
 func alphabeticPick(s1, s2 string) string {
 	if s1 == s2 {
 		return s1

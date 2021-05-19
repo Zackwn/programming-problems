@@ -1,5 +1,7 @@
 package main
 
+var MORSE_CODE map[string]string
+
 func DecodeMorse(morseCode string) string {
 	result := ""
 	morse := []rune(morseCode)

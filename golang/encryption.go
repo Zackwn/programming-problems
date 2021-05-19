@@ -1,17 +1,12 @@
 package main
 
 import (
-	"fmt"
 	"math"
 )
 
-func main() {
-	fmt.Println(encryption("feedthedog")) // fto ehg ee dd
-}
-
 func encryption(s string) string {
 	s = deleteSpaces(s)
-	ssr := sqrt(float64(len(s)))
+	ssr := esqrt(float64(len(s)))
 	rows := int(math.Floor(ssr))
 	columns := int(math.Ceil(ssr))
 
@@ -39,7 +34,7 @@ func encryption(s string) string {
 	return result
 }
 
-func sqrt(x float64) float64 {
+func esqrt(x float64) float64 {
 	var lz float64
 	z := 1.0
 	for i := 0; i < 1000; i++ {

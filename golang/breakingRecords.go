@@ -1,3 +1,5 @@
+package main
+
 func breakingRecords(scores []int32) []int32 {
 	var brokeBest int32 = 0
 	var brokeWorst int32 = 0

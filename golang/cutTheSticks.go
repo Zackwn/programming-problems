@@ -1,3 +1,5 @@
+package main
+
 func cutTheSticks(arr []int32) []int32 {
 	sort(arr)
 	lengths := []int32{}

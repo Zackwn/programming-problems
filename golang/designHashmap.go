@@ -1,17 +1,17 @@
 package main
 
 type MyHashMap struct {
-	value []*Node
+	value []*HMNode
 }
 
-type Node struct {
+type HMNode struct {
 	key   int
 	value int
 }
 
 /** Initialize your data structure here. */
-func Constructor() MyHashMap {
-	return MyHashMap{make([]*Node, 0)}
+func DHMConstructor() MyHashMap {
+	return MyHashMap{make([]*HMNode, 0)}
 }
 
 /** value will always be non-negative. */
@@ -22,7 +22,7 @@ func (this *MyHashMap) Put(key int, value int) {
 			return
 		}
 	}
-	this.value = append(this.value, &Node{key, value})
+	this.value = append(this.value, &HMNode{key, value})
 }
 
 /** Returns the value to which the specified key is mapped, or -1 if this map contains no mapping for the key */

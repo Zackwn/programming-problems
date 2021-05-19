@@ -1,3 +1,7 @@
+package main
+
+import "sort"
+
 func threeSum(nums []int) [][]int {
 	/*
 		for each element search for 3sum == 0 with left and right pointers

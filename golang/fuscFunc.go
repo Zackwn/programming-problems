@@ -1,4 +1,4 @@
-package kata
+package main
 
 func Fusc(n int) int {
 	if n == 0 || n == 1 {

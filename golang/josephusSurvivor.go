@@ -1,4 +1,4 @@
-package kata
+package main
 
 func JosephusSurvivor(n, k int) int {
 	//Your code:
