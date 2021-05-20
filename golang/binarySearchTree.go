@@ -1,44 +1,40 @@
 package main
 
-import (
-	"fmt"
-)
+// func main() {
+// 	bst := BinarySearchTree{}
 
-func main() {
-	bst := BinarySearchTree{}
+// 	// bst.Insert(2)
+// 	// bst.Insert(3)
+// 	// bst.Insert(1)
+// 	// bst.Insert(9)
+// 	// bst.Insert(8)
 
-	// bst.Insert(2)
-	// bst.Insert(3)
-	// bst.Insert(1)
-	// bst.Insert(9)
-	// bst.Insert(8)
+// 	bst.Insert(30)
+// 	bst.Insert(20)
+// 	bst.Insert(25)
+// 	bst.Insert(26)
+// 	bst.Insert(21)
 
-	bst.Insert(30)
-	bst.Insert(20)
-	bst.Insert(25)
-	bst.Insert(26)
-	bst.Insert(21)
+// 	// bst.Insert(30)
+// 	bst.Delete(25)
 
-	// bst.Insert(30)
-	bst.Delete(25)
+// 	fmt.Println(bst.head.left.right.Value) // 26
+// 	fmt.Println(bst.Search(26))            // true
+// 	fmt.Println(bst.Search(25))            // false
+// }
 
-	fmt.Println(bst.head.left.right.Value) // 26
-	fmt.Println(bst.Search(26))            // true
-	fmt.Println(bst.Search(25))            // false
-}
-
-type Node struct {
+type BSTNode struct {
 	Value int
-	left  *Node
-	right *Node
+	left  *BSTNode
+	right *BSTNode
 }
 
 type BinarySearchTree struct {
-	head *Node
+	head *BSTNode
 }
 
 func (b *BinarySearchTree) Delete(value int) {
-	var previusNode *Node
+	var previusNode *BSTNode
 	node := b.head
 	for node != nil {
 		if node.Value == value {
@@ -78,7 +74,7 @@ func (b *BinarySearchTree) Search(value int) bool {
 
 func (b *BinarySearchTree) Insert(value int) {
 	if b.head == nil {
-		b.head = &Node{
+		b.head = &BSTNode{
 			Value: value,
 		}
 		return
@@ -91,7 +87,7 @@ func (b *BinarySearchTree) Insert(value int) {
 			if node.right != nil {
 				node = node.right
 			} else {
-				node.right = &Node{
+				node.right = &BSTNode{
 					Value: value,
 				}
 				break
@@ -101,7 +97,7 @@ func (b *BinarySearchTree) Insert(value int) {
 			if node.left != nil {
 				node = node.left
 			} else {
-				node.left = &Node{
+				node.left = &BSTNode{
 					Value: value,
 				}
 				break
