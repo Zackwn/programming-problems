@@ -1,11 +1,12 @@
 package main
 
 func maxArea(height []int) int {
-	water := 0
+	max := 0
 	l, r := 0, len(height)-1
 	for l < r {
-		if min(height[l], height[r])*(r-l) > water {
-			water = min(height[l], height[r]) * (r - l)
+		area := min(height[l], height[r]) * (r - l)
+		if area > max {
+			max = area
 		}
 		if height[l] > height[r] {
 			r--
@@ -13,7 +14,7 @@ func maxArea(height []int) int {
 			l++
 		}
 	}
-	return water
+	return max
 }
 
 func min(a, b int) int {
