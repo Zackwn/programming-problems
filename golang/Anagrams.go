@@ -1,7 +1,7 @@
 package main
 
 func Anagrams(word string, words []string) []string {
-	wcc, lwcc, result := make(map[rune]int), make(map[rune]int), make([]string, 0)
+	wcc, lwcc, result := make(map[rune]int), make(map[rune]int), make([]string, 0, len(words))
 	for _, c := range word {
 		wcc[c]++
 	}
