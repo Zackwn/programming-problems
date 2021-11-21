@@ -1,13 +1,11 @@
 package main
 
 func Pyramid(n int) [][]int {
-	pyd := make([][]int, n)
-	for i := 1; i <= n; i++ {
-		step := make([]int, i)
-		for j := 0; j < i; j++ {
-			step[j] = 1
-		}
-		pyd[i-1] = step
+	p := make([][]int, n) // pyramid
+	s := make([]int, 0)   // step
+	for i := 0; i < n; i++ {
+		s = append(s, 1)
+		p[i] = s
 	}
-	return pyd
+	return p
 }
